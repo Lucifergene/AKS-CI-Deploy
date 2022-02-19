@@ -7,4 +7,4 @@ namespace: default
 images:
 - name: node-ci
   newName: avik6028/node-ci
-  newTag: bc53b7b2f0ebea63bf85f67ca480c28bbc8a1798
+  newTag: b95bd4ffbe3b1b3e754e6fa8a2e78376e706d898

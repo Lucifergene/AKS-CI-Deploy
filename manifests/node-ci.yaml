@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nodejs
+  name: nodejs
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    targetPort: 1337
+  selector:
+    app: nodejs
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nodejs
+  name: nodejs
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - image: avik6028/node-ci:b95bd4ffbe3b1b3e754e6fa8a2e78376e706d898
+        name: node-ci
+        ports:
+        - containerPort: 1337
+          name: http
+      nodeSelector:
+        beta.kubernetes.io/os: linux
